@@ -171,22 +171,6 @@ def main():
         </div>
     """, unsafe_allow_html=True)
 
-    # Configuration
-    with st.expander("System Configuration", expanded=False):
-        c1, c2 = st.columns([1, 1])
-        with c1:
-            api_key = get_api_key()
-            if not api_key:
-                st.error("GROQ_API_KEY not found.")
-            else:
-                st.success("API Key System Active")
-        with c2:
-            model_option = st.selectbox(
-                "Inference Model",
-                ("llama-3.3-70b-versatile", "llama-3.1-70b-versatile", "mixtral-8x7b-32768"),
-                index=0
-            )
-
     # Initialize Session State
     if 'generated_story' not in st.session_state:
         st.session_state.generated_story = ""
@@ -233,6 +217,19 @@ def main():
         setting = st.text_input("Setting", placeholder="e.g. A rain-slicked neo-tokyo alleyway...")
         plot_twist = st.text_area("Directives / Twists", height=200, placeholder="Enter specific themes, constraints, or mandatory plot points...")
         
+        # Model Selection (User-Friendly)
+        model_map = {
+            "Cinematic (Rich Detail)": "llama-3.3-70b-versatile",
+            "Classic (Balanced)": "llama-3.1-70b-versatile", 
+            "Fast (Quick Reads)": "mixtral-8x7b-32768"
+        }
+        
+        selected_style = st.selectbox("Narrative Style", options=list(model_map.keys()), index=0)
+        model_option = model_map[selected_style]
+        
+        # API Key check (Silent)
+        api_key = get_api_key()
+
         st.write("") 
         st.write("") 
         generate_btn = st.button("Generate Story", type="primary")
