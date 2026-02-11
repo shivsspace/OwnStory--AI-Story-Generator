@@ -5,6 +5,12 @@ OwnStory is a Streamlit-based web application that creates imaginative and engag
 
 The project focuses on combining creative flexibility with high-performance AI to deliver rich stories in real time.
 
+
+## Live Preview 🚀
+You can try the application live here:
+
+🔗 **Live App:** [https://ownstory-ai-story-generator.streamlit.app](https://ownstory--ai-story-generator-shivsspace.streamlit.app/)  
+
 ---
 
 ## AI Inference Engine: Groq
